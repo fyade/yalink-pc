@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Search from 'views/search/Index.vue'
 
 const routes = [
   {
     path: '/',
-    component: () => import('@/layout/index.vue'),
+    component: () => import('@/layout/Index.vue'),
     children: [
       {
         path: '',
-        component: () => import('views/home/index.vue')
+        components: {
+          search: Search,
+          default: () => import('views/link/Index.vue')
+        }
       }
     ]
   }

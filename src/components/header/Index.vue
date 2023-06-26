@@ -1,5 +1,5 @@
 <script setup>
-import iconUser from '@/assets/icon/用户_user.svg'
+import iconUser from '@/assets/icon/user.svg'
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
-import HeaderVue from 'comp/header/index.vue'
-import FooterVue from 'comp/footer/index.vue'
+import HeaderVue from 'comp/header/Index.vue'
+import FooterVue from 'comp/footer/Index.vue'
 import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
@@ -14,6 +14,7 @@ const route = useRoute()
       </div>
     </header>
     <div class="main">
+      <router-view name="search"/>
       <router-view/>
     </div>
     <footer>
@@ -34,7 +35,7 @@ main {
     border-bottom: 1px solid #eee;
 
     > div {
-      @include maxWidth;
+      @include max-width;
       margin: auto;
     }
   }

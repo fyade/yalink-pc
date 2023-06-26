@@ -1,33 +1,17 @@
 <script setup>
-import { getSearchEngine } from 'api/search-engine.js'
-import { getSort } from 'api/sort.js'
-import { getLinkByGroup, getLinkOfRootSort } from 'api/link.js'
 import { reactive } from "vue";
+import { getSearchEngine } from "api/search-engine.js";
 
 let state = reactive({
   searchEngineList: [],
   currentSearchEngine: '',
-  val: '',
-  sortList: [],
-  currentSort: '',
-  linkList: []
+  val: ''
 })
 
 getSearchEngine().then(res => {
   state.searchEngineList = res.data
   state.currentSearchEngine = state.searchEngineList[0].id
 })
-getSort().then(res => {
-  state.sortList = res.data
-  state.currentSort = state.sortList[0].id
-  getLink()
-})
-
-const getLink = () => {
-  getLinkOfRootSort(state.currentSort).then(res => {
-    state.linkList = res.data
-  })
-}
 
 const changeEngine = id => {
   state.currentSearchEngine = id
@@ -43,11 +27,6 @@ const search = () => {
 }
 const openUrl = url => {
   window.open(url)
-}
-
-const changeSort = id => {
-  state.currentSort = id
-  getLink()
 }
 </script>
 
@@ -68,36 +47,11 @@ const changeSort = id => {
       </main>
     </div>
   </div>
-  <div class="linkArea containerArea">
-    <main>
-      <div class="header">
-        <div :class="state.currentSort===item.id?'choosed':''" v-for="item in state.sortList" :key="item.id"
-             @click="changeSort(item.id)">
-          {{ item.name }}
-        </div>
-      </div>
-      <div class="list">
-        <div v-for="item in state.sortList.find(i=>i.id===state.currentSort)?.children" :key="item.id">
-          <div class="title">{{ item.name }}</div>
-          <div class="linkList">
-            <div v-for="itm in state.linkList.find(i=>i.sortId===item.id)?.links" :key="itm.id"
-                 @click="openUrl(itm.url)">
-              <div class="left"></div>
-              <div class="right">
-                <p>{{ itm.name }}</p>
-                <p>{{ itm.descr }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
 </template>
 
 <style scoped lang="scss">
 .containerArea {
-  @include maxWidth;
+  @include max-width;
 }
 
 .searchArea {
@@ -155,56 +109,6 @@ const changeSort = id => {
         flex: none;
         width: 80px;
         cursor: pointer;
-      }
-    }
-  }
-}
-
-.linkArea {
-  padding: 1rem 0;
-
-  main {
-    > .header {
-      display: flex;
-
-      > div {
-        padding: 4px;
-        cursor: pointer;
-
-        &.choosed {
-          color: red;
-        }
-      }
-    }
-
-    > .list {
-      > div {
-        margin-top: 1rem;
-
-        > .title {
-          line-height: 2;
-        }
-
-        > .linkList {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 24px;
-
-          > div {
-            display: inline-block;
-            width: 240px;
-            height: 80px;
-            background-color: #fff;
-            border: 1px solid #eee;
-            cursor: pointer;
-            transition: all .2s;
-
-            &:hover {
-              box-shadow: 0 0 10px 3px #ddd;
-              transform: translateY(-8px);
-            }
-          }
-        }
       }
     }
   }

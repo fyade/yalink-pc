@@ -7,6 +7,8 @@ import './assets/styles/index.scss'
 const pinia = createPinia()
 const app = createApp(App)
 
+app.component('Icon', () => import('comp/icon/Index.vue'))
+
 app.use(pinia)
 app.use(router)
 app.mount('#app')

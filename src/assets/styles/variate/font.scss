@@ -1,0 +1,15 @@
+@mixin text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+$font-fs-minimun: 8px;
+$font-fs-small: 12px;
+$font-fs-common: 16px;
+$font-fs-large: 20px;
+$font-fs-maximum: 24px;
+$font-fs: $font-fs-common;
+
+$font-c-red: red;
+$font-c-gray: #808080;
