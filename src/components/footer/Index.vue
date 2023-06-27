@@ -8,6 +8,10 @@
       <p>&copy; FeiYang 2023</p>
       <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2022016512号-2</a>
     </div>
+    <div>
+      <p>QQ群983465320</p>
+      <a href="https://gitee.com/fyade/yalink-pc/issues" target="_blank">Gitee反馈</a>
+    </div>
   </main>
 </template>
 
@@ -15,13 +19,15 @@
 main {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 3rem;
   padding: 1rem 0;
   background-color: #fff;
+  user-select: text;
 
   > div {
-    > p {
-      line-height: 2;
+    > p, a {
+      line-height: 1.5;
     }
   }
 }

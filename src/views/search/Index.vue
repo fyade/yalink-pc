@@ -71,6 +71,7 @@ const openUrl = url => {
 
     > .choose {
       display: flex;
+      align-items: flex-end;
 
       > div {
         display: flex;

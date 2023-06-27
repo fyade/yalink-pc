@@ -29,6 +29,9 @@ const changeSort = id => {
 const linkSearch = obj => {
   console.log(obj)
 }
+const openUrl = url => {
+  window.open(url)
+}
 </script>
 
 <template>
@@ -134,6 +137,7 @@ const linkSearch = obj => {
 
   > .header {
     display: flex;
+    align-items: flex-end;
 
     > div {
       padding: 4px;
