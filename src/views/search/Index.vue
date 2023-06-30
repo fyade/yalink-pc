@@ -74,18 +74,17 @@ const openUrl = url => {
       align-items: flex-end;
 
       > div {
+        @include text-unchoosed;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 50px;
         height: 30px;
-        color: #aaa;
         cursor: pointer;
       }
 
       > .choosed {
-        color: #000;
-        text-decoration: underline;
+        @include text-choosed;
       }
     }
 

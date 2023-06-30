@@ -1,7 +1,9 @@
-import { useUserStore } from "store/user.js";
+import { useUserStore } from "store/user.js"
+import { useGlobalStore } from "store/global.js"
 
 export default function useStore() {
   return {
-    user: useUserStore()
+    user: useUserStore(),
+    global: useGlobalStore()
   }
 }

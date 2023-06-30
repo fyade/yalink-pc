@@ -12,6 +12,10 @@ html {
   user-select: none;
 }
 
+#app {
+  overflow: auto;
+}
+
 a {
   color: #000;
   text-decoration: none;

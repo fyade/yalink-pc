@@ -1,10 +1,12 @@
 <script setup>
 import search from '@/assets/icon/search2.svg'
+import docDetail from '@/assets/icon/doc-detail.svg'
 
 let props = defineProps(['name'])
 
 let iconList = {
-  search
+  search,
+  doc: docDetail
 }
 const useIcon = name => {
   return iconList[name]

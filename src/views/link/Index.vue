@@ -1,13 +1,16 @@
 <script setup>
 import Icon from "comp/icon/Index.vue";
+import PopupSearch from 'comp/popup-search/Index.vue'
 import { reactive } from "vue";
 import { getSort } from "api/sort.js";
 import { getLinkOfRootSort } from "api/link.js";
+import { useGlobalStore } from "store/global.js";
 
 let state = reactive({
   sortList: [],
   currentSort: '',
-  linkList: []
+  linkList: [],
+  popupLink: {}
 })
 
 getSort().then(res => {
@@ -27,7 +30,8 @@ const changeSort = id => {
   getLink()
 }
 const linkSearch = obj => {
-  console.log(obj)
+  state.popupLink = obj
+  useGlobalStore().openPopupSearch()
 }
 const openUrl = url => {
   window.open(url)
@@ -49,12 +53,13 @@ const openUrl = url => {
           <div class="linkBox" v-for="itm in state.linkList.find(i=>i.sortId===item.id)?.links" :key="itm.id"
                @click="openUrl(itm.url)">
             <div class="left">
-              <img :src="itm.ico" alt=""/>
+              <img v-lazy="itm.ico" alt=""/>
             </div>
             <div class="right">
               <p class="title">{{ itm.name }}</p>
               <p class="descr">{{ itm.descr }}</p>
               <div class="func">
+                <Icon v-if="!!itm.docUrl" name="doc" @click.stop="openUrl(itm.docUrl)"/>
                 <Icon v-if="!!itm.siteSearch" name="search" @click.stop="linkSearch(itm)"/>
               </div>
             </div>
@@ -63,6 +68,12 @@ const openUrl = url => {
       </div>
     </div>
   </div>
+
+  <PopupSearch
+      :name="state.popupLink.name"
+      :url="state.popupLink.url"
+      :site-search="state.popupLink.siteSearch"
+  />
 </template>
 
 <style scoped lang="scss">
@@ -71,7 +82,7 @@ const openUrl = url => {
 }
 
 .linkBox {
-  display: flex;
+  display: inline-flex;
   gap: $unit-3;
   padding: $unit-2;
   width: 240px;
@@ -81,8 +92,7 @@ const openUrl = url => {
   transition: all .2s;
 
   &:hover {
-    box-shadow: 0 0 10px 3px #ddd;
-    transform: translateY(-8px);
+    box-shadow: 0 2px 10px 3px #ddd;
   }
 
   > .left {
@@ -140,19 +150,22 @@ const openUrl = url => {
     align-items: flex-end;
 
     > div {
+      @include text-unchoosed;
       padding: 4px;
       cursor: pointer;
 
       &.choosed {
-        color: red;
+        @include text-choosed;
       }
     }
   }
 
   > .list {
-    > div {
-      margin-top: 1rem;
+    margin-top: $unit-4;
+    display: grid;
+    gap: $unit-4;
 
+    > div {
       > .title {
         line-height: 2;
       }
@@ -160,7 +173,7 @@ const openUrl = url => {
       > .linkList {
         display: flex;
         flex-wrap: wrap;
-        gap: 24px;
+        gap: $unit-6;
 
         > div {
         }

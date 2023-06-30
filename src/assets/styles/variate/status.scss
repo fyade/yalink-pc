@@ -1,0 +1,8 @@
+@mixin text-unchoosed {
+  color: #888;
+}
+
+@mixin text-choosed {
+  color: #000;
+  text-decoration: underline;
+}
