@@ -14,13 +14,13 @@ const useIcon = name => {
 </script>
 
 <template>
-  <div class="main">
+  <div class="icon">
     <img :src="useIcon(name)"/>
   </div>
 </template>
 
 <style scoped lang="scss">
-.main {
+.icon {
   display: flex;
 
   > * {

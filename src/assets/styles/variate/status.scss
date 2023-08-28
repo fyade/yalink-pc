@@ -1,8 +1,33 @@
-@mixin text-unchoosed {
-  color: #888;
+@mixin text-choose-box {
+  display: flex;
+  gap: 25px;
 }
 
 @mixin text-choosed {
   color: #000;
-  text-decoration: underline;
+}
+
+@mixin text-unchoosed {
+  color: $font-c-gray-1;
+}
+
+@mixin box-choosed-bgc-fff-1-common {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+}
+
+@mixin box-choosed-bgc-fff-1 {
+  @include box-choosed-bgc-fff-1-common;
+  @include text-choosed;
+  background-color: #efefef;
+}
+
+@mixin box-unchoosed-bgc-fff-1 {
+  @include box-choosed-bgc-fff-1-common;
+  @include text-unchoosed;
 }

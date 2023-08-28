@@ -1,13 +1,13 @@
 <script setup>
-import HeaderVue from 'comp/header/Index.vue'
-import FooterVue from 'comp/footer/Index.vue'
+import HeaderVue from '@/layout/header/Header.vue'
+import FooterVue from '@/layout/footer/Footer.vue'
 import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
 </script>
 
 <template>
-  <main>
+  <div class="layout-container">
     <header>
       <div>
         <HeaderVue/>
@@ -20,11 +20,11 @@ const route = useRoute()
     <footer>
       <FooterVue/>
     </footer>
-  </main>
+  </div>
 </template>
 
 <style scoped lang="scss">
-main {
+.layout-container {
   width: 100%;
   height: 100%;
 
@@ -41,7 +41,6 @@ main {
   }
 
   > .main {
-    background-color: #efefef;
   }
 
   > footer {

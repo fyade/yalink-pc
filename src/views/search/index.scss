@@ -1,0 +1,72 @@
+.containerArea {
+  @include max-width;
+  display: flex;
+  height: 100%;
+}
+
+.search-container {
+  height: calc(100vh - 50px);
+  background-color: #fff;
+
+  .main {
+    margin: auto;
+    padding: 1rem 0;
+    width: 1000px;
+    //background-image: url('@/assets/images/IMG_20210920_180519.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateY(-50px);
+
+    > * {
+      margin: 0 auto;
+      width: 60%;
+    }
+
+    > .choose {
+      display: flex;
+      align-items: flex-end;
+
+      > div {
+        @include text-unchoosed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      > .choosed {
+        @include text-choosed;
+        color: #fff;
+        background-color: #000;
+      }
+    }
+
+    > .search {
+      display: flex;
+      height: 48px;
+      border: 1px solid #000;
+      overflow: hidden;
+
+      > * {
+        border: 0;
+        outline: none;
+      }
+
+      > input {
+        flex: auto;
+        padding: 0 16px;
+      }
+
+      > button {
+        flex: none;
+        width: 80px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #000;
+      }
+    }
+  }
+}

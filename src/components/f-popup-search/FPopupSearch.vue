@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from "vue";
-import { useGlobalStore } from "store/global.js";
+import { reactive } from "vue"
+import { useGlobalStore } from "store/global.js"
 
 let props = defineProps({
   name: {
@@ -37,7 +37,7 @@ const close = () => {
 
 <template>
   <teleport v-if="useGlobalStore().popupSearchShow" to="body">
-    <div class="popup-search-container" @click="close">
+    <div class="f-popup-search" @click="close">
       <div class="search-box" @click.stop>
         <div class="title">{{ props.name }}</div>
         <div class="search">
@@ -51,7 +51,7 @@ const close = () => {
 </template>
 
 <style scoped lang="scss">
-.popup-search-container {
+.f-popup-search {
   display: flex;
   position: fixed;
   top: 0;

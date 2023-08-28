@@ -1,11 +1,11 @@
-import ax from "utils/request.js";
+import request from "utils/request.js"
 
 /**
  * 获取分类列表
  * @returns {*}
  */
 export function getSort() {
-  return ax({
+  return request({
     url: '/sort',
     method: 'GET'
   })

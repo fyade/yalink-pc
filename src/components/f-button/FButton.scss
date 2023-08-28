@@ -1,0 +1,109 @@
+@mixin f-button-common {
+  color: #fff;
+  border: none;
+}
+
+$f-button-type: primary, success, info, warning, danger;
+$f-button-bg-colors: #1e90ff, #2ed573, #a4b0be, #ffa502, #ff4757;
+
+@for $i from 1 through length($f-button-bg-colors) {
+  .f-button {
+    $bg-color: nth($f-button-bg-colors, $i);
+
+    &.#{nth($f-button-type,$i)} {
+      @include f-button-common;
+      background-color: $bg-color;
+
+      &:hover {
+        background-color: lighten($bg-color, 10%);
+      }
+
+      &:active {
+        background-color: darken($bg-color, 10%);
+      }
+
+      &:disabled {
+        background-color: lighten($bg-color, 20%);
+        color: lighten($bg-color, 40%)
+      }
+
+      &.plain {
+        color: $bg-color;
+        border: 1px solid $bg-color;
+        background-color: lighten($bg-color, 30%);
+
+        &:hover {
+          color: #fff;
+          background-color: $bg-color;
+        }
+
+        &:active {
+          background-color: darken($bg-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+.f-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  $bg-color: #fff;
+  background-color: $bg-color;
+  border: 1px solid #ddd;
+  border-radius: $unit-1;
+  cursor: pointer;
+  transition: all $transition-time;
+
+  &.defaultType {
+    background-color: $bg-color;
+
+    &:hover {
+      background-color: lighten($bg-color, 10%);
+    }
+
+    &:active {
+      background-color: darken($bg-color, 10%);
+    }
+
+    &:disabled {
+      background-color: lighten($bg-color, 20%);
+      color: lighten($bg-color, 40%)
+    }
+
+    &.plain {
+      color: #000;
+      border: 1px solid #ddd;
+      background-color: lighten($bg-color, 30%);
+
+      &:hover {
+        border: 1px solid #000;
+        background-color: $bg-color;
+      }
+
+      &:active {
+        background-color: darken($bg-color, 10%);
+      }
+    }
+  }
+
+  &.defaultSize {
+    width: 72px;
+    height: 30px;
+    font-size: $font-fs-14;
+  }
+
+  &.large {
+    width: 80px;
+    height: 35px;
+    font-size: $font-fs-common;
+  }
+
+  &.small {
+    width: 60px;
+    height: 25px;
+    font-size: $font-fs-minimun;
+  }
+}

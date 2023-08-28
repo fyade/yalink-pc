@@ -1,0 +1,55 @@
+@mixin no-border-trl {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+@mixin input {
+  margin: $unit-1;
+  padding: $unit-1 $unit-3;
+  width: 300px;
+  height: 50px;
+  line-height: 40px;
+  border: 2px solid #000;
+  border-radius: $unit-2;
+  outline: none;
+  &::placeholder {
+    color: $color-white-shallowmost;
+  }
+}
+
+@mixin input-line {
+  @include input;
+  @include no-border-trl;
+}
+
+@mixin input-text {
+  @include input;
+}
+
+@mixin input-text-line {
+  @include input-text;
+  @include no-border-trl;
+}
+
+@mixin input-text-small {
+  @include input-text;
+  width: 240px;
+  height: 30px;
+  line-height: 30px;
+  border-color: #000;
+}
+
+@mixin input-text-small-line {
+  @include input-text-small;
+  @include no-border-trl;
+}
+
+@mixin input-checkbox {
+}
+
+@mixin input-checkbox-line {
+  @include input-checkbox;
+  @include no-border-trl;
+}

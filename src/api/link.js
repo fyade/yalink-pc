@@ -1,4 +1,4 @@
-import ax from "utils/request.js";
+import request from "utils/request.js"
 
 /**
  * 根据分类获取所属链接
@@ -6,7 +6,7 @@ import ax from "utils/request.js";
  * @returns {*}
  */
 export function getLinkByGroup(sortId) {
-  return ax({
+  return request({
     url: `/link/group/${sortId}`,
     method: 'GET'
   })
@@ -18,7 +18,7 @@ export function getLinkByGroup(sortId) {
  * @returns {*}
  */
 export function getLinkOfRootSort(sortId) {
-  return ax({
+  return request({
     url: `/link/root/${sortId}`,
     method: 'GET'
   })

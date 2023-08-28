@@ -1,11 +1,11 @@
-import ax from "utils/request.js";
+import request from "utils/request.js"
 
 /**
  * 获取搜索引擎列表
  * @returns {*}
  */
 export function getSearchEngine() {
-  return ax({
+  return request({
     url: '/search-engine',
     method: 'GET'
   })
