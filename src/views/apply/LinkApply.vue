@@ -1,10 +1,11 @@
 <script setup>
 import { getSort } from 'api/sort.js'
-import { nextTick, onMounted, reactive } from "vue";
+import { computed, nextTick, onMounted, reactive } from "vue";
 import FCascader from "comp/f-cascader/FCascader.vue";
 import { addLinkApply, getLinkApplyList } from "api/link-apply.js";
 import FMessage from "comp/f-message/FMessage.js";
 import { flatObjectArray } from "utils/data-utils.js";
+import { useDictStore } from "store/dict.js";
 
 let state = reactive({
   sortList: [],
@@ -29,8 +30,12 @@ let state = reactive({
     pageNum: 1,
     pageSize: 10
   },
-  submiting: false
+  submiting: false,
+  applyStatus: []
 })
+const dictStore = useDictStore()
+
+state.applyStatus = computed(() => dictStore.getDict('sys_link_apply_status'))
 
 onMounted(() => {
   getSortInfo()
@@ -80,21 +85,42 @@ const nodeClick = sort => {
 
 <template>
   <div class="link-apply-container">
-    <div class="listArea">
+    <div class="listArea" v-if="state.total>0">
       <div class="title">
         <span>我共提交过{{ state.total }}次申请</span>
       </div>
       <div class="list">
         <div v-for="item in state.list" :key="item.id">
           <div>
-            <p>{{ item.id }}</p>
-            <p>{{ item.name }}</p>
-            <p>{{ item.descr }}</p>
-            <p>{{ item.url }}</p>
-            <p>{{ item.ico }}</p>
-            <p>{{ item.sortId }}</p>
-            <p>{{ item.status }}</p>
-            <p>{{ item.msg }}</p>
+            <img :src="item.ico"/>
+            <p class="id">
+              <span>id</span>
+              <span :title="item.id">{{ item.id }}</span>
+            </p>
+            <p class="name">
+              <span>链接名</span>
+              <span :title="item.name">{{ item.name }}</span>
+            </p>
+            <p class="descr">
+              <span>链接描述</span>
+              <span :title="item.descr">{{ item.descr }}</span>
+            </p>
+            <p class="url">
+              <span>链接地址</span>
+              <span :title="item.url"><a :href="item.url" target="_blank">{{ item.url }}</a></span>
+            </p>
+            <!--<p class="sortId">-->
+            <!--  <span>sortId</span>-->
+            <!--  <span :title="item.sortId">{{ item.sortId }}</span>-->
+            <!--</p>-->
+            <p class="status">
+              <span>状态</span>
+              <span :title="item.status">{{ state.applyStatus.find(itm => itm.value === item.status).label }}</span>
+            </p>
+            <p v-if="item.status===2" class="msg">
+              <span>msg</span>
+              <span :title="item.msg">{{ item.msg }}</span>
+            </p>
           </div>
         </div>
         <div style="cursor:pointer;" v-if="state.total>state.list.length" @click="loadmore">
@@ -102,6 +128,7 @@ const nodeClick = sort => {
         </div>
       </div>
     </div>
+    <hr/>
     <div class="formArea">
       <form>
         <label>
@@ -145,13 +172,66 @@ const nodeClick = sort => {
 
       > div {
         > div {
+          position: relative;
           flex: none;
           padding: 10px;
           width: 240px;
           height: 200px;
           border-radius: 10px;
           box-shadow: $box-shadow-common-eee;
-          overflow: auto;
+          overflow: hidden;
+
+          > img {
+            position: absolute;
+            top: calc(100% - 100px + 10px);
+            left: calc(-10px);
+            width: 100px;
+            aspect-ratio: 1;
+            opacity: .1;
+          }
+
+          > p {
+            @include text-overflow-ellipsis;
+            line-height: 1.5;
+
+            > span {
+              &:nth-child(1) {
+                color: $color-gray;
+
+                &::after {
+                  content: '：';
+                }
+              }
+
+              &:nth-child(2) {
+              }
+            }
+          }
+
+          > .id {
+
+          }
+
+          > .name {
+          }
+
+          > .descr {
+          }
+
+          > .url {
+          }
+
+          > .ico {
+          }
+
+          > .sortId {
+          }
+
+          > .status {
+          }
+
+          > .msg {
+          }
         }
 
         //&:first-child {
@@ -195,7 +275,7 @@ const nodeClick = sort => {
         }
 
         > input {
-          @include input-text-small;
+          @include input-text-small-line;
         }
       }
     }

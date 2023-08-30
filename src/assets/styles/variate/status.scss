@@ -31,3 +31,9 @@
   @include box-choosed-bgc-fff-1-common;
   @include text-unchoosed;
 }
+
+@mixin box-choosed-1{
+  color: #fff;
+  background-color: #000;
+}
+@mixin box-unchoosed-1{}

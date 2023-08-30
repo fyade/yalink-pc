@@ -119,6 +119,7 @@ const clear = () => {
   display: flex;
   width: 100vw;
   height: 100vh;
+  background-color: #f0f0f1;
 
   > .box {
     margin: auto;
@@ -126,9 +127,9 @@ const clear = () => {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    background-color: #fff;
     box-shadow: $box-shadow-common-ddd;
-    border-radius: $unit-2;
-    transform: translateX(40%);
+    //transform: translateX(40%);
 
     > .header {
       @include text-choose-box;

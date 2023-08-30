@@ -18,13 +18,9 @@ const logout = userStore.logout
           <div @click="router.push('/')">雅链</div>
         </template>
       </FHoverDropDownMenu>
-      <FHoverDropDownMenu>
+      <FHoverDropDownMenu :has-list="false">
         <template #header>
-          <div>收录申请</div>
-        </template>
-        <template #list>
-          <!--<div @click="router.push('/apply/sort')">分类收录</div>-->
-          <div @click="router.push('/apply/link')">链接收录</div>
+          <div @click="router.push('/apply')">收录申请</div>
         </template>
       </FHoverDropDownMenu>
     </div>

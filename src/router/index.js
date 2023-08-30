@@ -42,6 +42,10 @@ const routes = [
         },
         children: [
           {
+            path: '',
+            redirect: '/apply/link'
+          },
+          {
             path: 'sort',
             component: () => import('views/apply/SortApply.vue')
           },
