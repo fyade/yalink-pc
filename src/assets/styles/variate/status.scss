@@ -1,10 +1,15 @@
 @mixin text-choose-box {
   display: flex;
+  align-items: flex-end;
   gap: 25px;
 }
 
 @mixin text-choosed {
   color: #000;
+}
+
+@mixin text-choosed-fs-large {
+  font-size: 24px;
 }
 
 @mixin text-unchoosed {
@@ -32,8 +37,10 @@
   @include text-unchoosed;
 }
 
-@mixin box-choosed-1{
+@mixin box-choosed-1 {
   color: #fff;
   background-color: #000;
 }
-@mixin box-unchoosed-1{}
+
+@mixin box-unchoosed-1 {
+}

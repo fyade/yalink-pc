@@ -116,19 +116,30 @@ const clear = () => {
 
 <style scoped lang="scss">
 .login-container {
+  position: relative;
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #f0f0f1;
+  //background-color: #f0f0f1;
+  background-image: url("@/assets/images/login-bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   > .box {
-    margin: auto;
-    padding: 75px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(420px + 80px * 2);
+    height: 100%;
+    //margin: auto;
+    padding: 0 80px 150px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 30px;
     background-color: #fff;
-    box-shadow: $box-shadow-common-ddd;
+    //box-shadow: $box-shadow-common-ddd;
     //transform: translateX(40%);
 
     > .header {
@@ -141,6 +152,7 @@ const clear = () => {
 
       > .text-choosed {
         @include text-choosed;
+        @include text-choosed-fs-large;
       }
     }
 
@@ -160,7 +172,7 @@ const clear = () => {
 
         > input {
           @include input-line;
-          flex: none;
+          flex: auto;
         }
       }
     }
